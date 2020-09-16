@@ -3,6 +3,7 @@ const express = require("express");
 require("dotenv").config();
 const listings = require("./aspenData");
 const path = require("path");
+const bcrypt = require("bcrypt");
 const cors = require("cors");
 
 const app = express();
@@ -70,10 +71,11 @@ app.post("/user", async (request, response) => {
     const password = request.body.password;
     const firstname = request.body.firstname;
     const lastname = request.body.lastname;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new UserModel({
       username,
-      password,
+      password: hashedPassword,
       firstname,
       lastname,
     });
@@ -83,6 +85,15 @@ app.post("/user", async (request, response) => {
     response.status(201).send(createdUser);
   } catch (error) {
     response.status(500).send(error);
+  }
+});
+
+app.get("/users", async (request, response) => {
+  try {
+    const users = await UserModel.find();
+    response.status(200).send(users);
+  } catch (error) {
+    console.log(error);
   }
 });
 
@@ -109,7 +120,7 @@ app.get("/listings", async (request, response) => {
 
 app.get("/listingbycity", async (request, response) => {
   try {
-    console.log("get listing by city");
+    // console.log("get listing by city");
     const city = request.query.city;
     const cityListing = await ListingModel.find({ city });
     response.status(200).send(cityListing);
@@ -133,6 +144,15 @@ async function listingLoop() {
   }
 }
 
+app.get("/reservation", async (request, response) => {
+  try {
+    const reservation = await ReservationModel.find();
+    response.status(200).send(reservation);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.post("/reservation", async (request, response) => {
   try {
     const startDate = request.body.startDate;
@@ -148,6 +168,7 @@ app.post("/reservation", async (request, response) => {
     response.status(201).send(createdReservation);
   } catch (error) {
     response.status(500).send(error);
+    console.log(error);
   }
 });
 
@@ -171,7 +192,7 @@ app.post("/authenticateuser", async (request, response) => {
     const result = await UserModel.find({ username });
     const userResult = result[0];
     if (userResult) {
-      if (userResult.password === password) {
+      if (await bcrypt.compare(password, userResult.password)) {
         return response.status(200).send(userResult);
       } else
         return response.status(400).send({ message: "incorrect password" });
@@ -186,7 +207,7 @@ app.listen(4000, () => console.log("app is listening on 4000"));
 app.get("/", async (request, response) => {
   try {
     console.log("send home page");
-    response.sendFile(path.join(__dirname + "/../groupAirbnb 2/airbnb.html"));
+    response.sendFile(path.join(__dirname + "/views/airbnb.html"));
   } catch (error) {
     console.log(error);
     response.status(500).send(error);
@@ -196,7 +217,7 @@ app.get("/", async (request, response) => {
 app.get("/listingspage", async (request, response) => {
   try {
     console.log("send home page");
-    response.sendFile(path.join(__dirname + "/../groupAirbnb 2/listings.html"));
+    response.sendFile(path.join(__dirname + "/views/listings.html"));
   } catch (error) {
     console.log(error);
     response.status(500).send(error);
