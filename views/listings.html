@@ -6,31 +6,7 @@
     <title>Document</title>
   </head>
   <body onload="getListings()">
-    <div class="main-container">
-      <div class="main-image">
-        <img
-          src="https://a0.muscache.com/im/pictures/25d5c39b-24d3-461c-8c72-3beeabd64a12.jpg?aki_policy=xx_large"
-        />
-      </div>
-      <div class="fields">
-        <div class="title">Loft condo with mountain view</div>
-        <div class="attributes">
-          <div class="guestbb">
-            <div class="guests">5 guests</div>
-            <div class="bedrooms">3 bed</div>
-            <div class="bathrooms">2 bath</div>
-          </div>
-          <div class="parking-fe">
-            <div class="parking">Free Parking</div>
-            <div class="extinguisher">Fire extinguisher</div>
-          </div>
-        </div>
-        <div class="rateprice">
-          <div class="rating">4.0</div>
-          <div class="pricing">$422/night</div>
-        </div>
-      </div>
-    </div>
+    <div class="listing-container" id="listing-container"></div>
   </body>
   <style>
     .main-container {
@@ -39,8 +15,14 @@
       border: 1px solid black;
     }
 
+    .top-attributes {
+      display: flex;
+      justify-content: space-between;
+    }
+
     .main-image img {
       height: 250px;
+      width: 250px;
     }
 
     .fields {
@@ -75,9 +57,67 @@
 
   <script>
     async function getListings() {
-      fetch(`http://localhost:4000/listingbycity?city=Aspen`)
+      console.log("onload function called");
+      const city = localStorage.getItem("city");
+      console.log(city);
+      fetch(`http://localhost:4000/listingbycity?city=${city}`)
         .then((res) => res.json())
-        .then((listing) => console.log(listing));
+        .then((listing) => displayListing(listing));
+    }
+    function displayListing(listing) {
+      listing.map((el) => {
+        document.getElementById("listing-container").innerHTML += `
+            <div class="main-container">
+          <div class="main-image">
+            <img
+              src=${el.image}
+            />
+          </div>
+          <div class="fields">
+            <div class="top-attributes">
+              <div class="title">${el.title}</div>
+              <button onclick="createReservation('${el._id}')">Reserve</button>
+              <label>Start Date</label><input id="start-date" type="date"/>
+              <label>End Date</label><input id="end-date" type="date"/>
+            </div>
+            <div class="attributes">
+              <div class="guestbb">
+                <div class="guests">Guests: ${el.guestAmount}</div>
+                <div class="bedrooms">Beds: ${el.bedAmount}</div>
+                <div class="bathrooms">Baths: ${el.bathAmount}</div>
+              </div>
+              <div class="parking-fe">
+                <div class="parking">Parking: ${el.parking}</div>
+                <div class="extinguisher">Fire Extinguisher: ${el.fireExtinguisher}</div>
+              </div>
+            </div>
+            <div class="rateprice">
+              <div class="rating">Rating: ${el.rating}</div>
+              <div class="pricing">Pricing: $${el.price} / night</div>
+            </div>
+          </div>
+        </div>
+        `;
+      });
+    }
+    async function createReservation(id) {
+      console.log("reservation called");
+      const startDate = document.getElementById("start-date").value;
+      const endDate = document.getElementById("end-date").value;
+      const reservedBy = localStorage.getItem("user");
+      const data = {
+        startDate: startDate,
+        endDate: endDate,
+        reservedBy: reservedBy,
+        reservedListing: id,
+      };
+      await fetch("http://localhost:4000/reservation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
     }
   </script>
 </html>
