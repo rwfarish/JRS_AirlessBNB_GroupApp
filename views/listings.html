@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body onload="getListings()">
+    <div class="main-container">
+      <div class="main-image">
+        <img
+          src="https://a0.muscache.com/im/pictures/25d5c39b-24d3-461c-8c72-3beeabd64a12.jpg?aki_policy=xx_large"
+        />
+      </div>
+      <div class="fields">
+        <div class="title">Loft condo with mountain view</div>
+        <div class="attributes">
+          <div class="guestbb">
+            <div class="guests">5 guests</div>
+            <div class="bedrooms">3 bed</div>
+            <div class="bathrooms">2 bath</div>
+          </div>
+          <div class="parking-fe">
+            <div class="parking">Free Parking</div>
+            <div class="extinguisher">Fire extinguisher</div>
+          </div>
+        </div>
+        <div class="rateprice">
+          <div class="rating">4.0</div>
+          <div class="pricing">$422/night</div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <style>
+    .main-container {
+      display: flex;
+      width: 100vw;
+      border: 1px solid black;
+    }
+
+    .main-image img {
+      height: 250px;
+    }
+
+    .fields {
+      display: flex;
+      flex-direction: column;
+      align-items: space-evenly;
+      justify-content: space-between;
+      width: 50vw;
+    }
+    .attributes {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+    }
+    .guestbb {
+      display: flex;
+    }
+    .guestbb div {
+      margin: 5px;
+    }
+    .parking-fe {
+      display: flex;
+    }
+    .parking-fe div {
+      margin: 5px;
+    }
+    .rateprice {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+
+  <script>
+    async function getListings() {
+      fetch(`http://localhost:4000/listingbycity?city=Aspen`)
+        .then((res) => res.json())
+        .then((listing) => console.log(listing));
+    }
+  </script>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Mulish"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vacation Rentals, Homes, Experiences</title>
+  </head>
+  <body>
+    <div class="covid-bar">
+      <a href="">Get the latest on our COVID-19 response</a>
+    </div>
+    <div class="background-container">
+      <nav class="nav-bar">
+        <div class="logo">
+          <img class="logo-img" src="Airbnb.png" alt="airbnb-logo" />
+        </div>
+        <div class="middle-nav">
+          <div>Places to stay</div>
+          <div>Monthly stays</div>
+          <div>Experiences</div>
+          <div>Online Experiences</div>
+        </div>
+        <div class="dropdown-container">
+          <select>
+            <option value="English (US)">English (US)</option>
+            <option value=" $ USD">$ USD</option>
+          </select>
+          <button>Sign In</button>
+        </div>
+      </nav>
+      <div class="search-bar-container">
+        <div class="search-bar">
+          <div class="location-search">
+            Location <input type="text" placeholder="Where are you going?" />
+          </div>
+          <button>Check in</button>
+          <button>Check out</button>
+          <button>Guests</button>
+          <a href="listingspage"><button onclick="search()">Search</button></a>
+        </div>
+      </div>
+      <div class="imagination-div">
+        <div class="imagination-title">
+          Get out and stretch your imagination
+        </div>
+        <div class="imagination-description">
+          You don't have to go far to find a world of wonder
+        </div>
+        <button class="explore-button">Explore</button>
+      </div>
+    </div>
+    <div class="card-container">
+      <div class="card">
+        <img
+          class="middle-image"
+          src="https://a0.muscache.com/im/pictures/658c5d58-b6df-49f3-8873-59cd55acd3b8.jpg?im_w=480"
+          alt="guy on toes"
+        />
+        <div class="description-container">
+          <div class="card-title">Online Experiences.</div>
+          <div class="card-description">
+            Unique activities we can do together, led by a world of hosts.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="middle-image"
+          src="https://a0.muscache.com/im/pictures/15159c9c-9cf1-400e-b809-4e13f286fa38.jpg?im_w=480"
+          alt="igloo"
+        />
+        <div class="description-container">
+          <div class="card-title">Unique Stays</div>
+          <div class="card-description">
+            Spaces that are more than just a place to sleep.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="middle-image"
+          src="https://a0.muscache.com/im/pictures/fdb46962-10c1-45fc-a228-d0b055411448.jpg?im_w=480"
+          alt="house"
+        />
+        <div class="description-container">
+          <div class="card-title">Entire Homes</div>
+          <div class="card-description">
+            Comfortable private places, with room for friends and family.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Ending of middle image container -->
+    <div class="online-experience-container">
+      <div class="oe-title">
+        <div class="oe-text">
+          <div style="font-size: 40px">Online Experiences</div>
+          <div>
+            Meet people all over the world while trying something new. Join
+            live, interactive video sessions led by one-of-a-kind hosts—all
+            without leaving home.
+          </div>
+        </div>
+        <button>Explore all</button>
+      </div>
+      <div class="explore-images">
+        <div class="muscles-left">
+          <img
+            class="muscles"
+            src="https://a0.muscache.com/im/pictures/af8a88f4-d8c5-4cbc-b9bb-008e74b6d8eb.jpg?im_w=720"
+            alt="muscles"
+          />
+          <div class="oe-pic-text">
+            Working out with fitness model Trevor Bell
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="top-right-side">
+            <div class="jump-dance">
+              <img
+                class="jump"
+                src="https://a0.muscache.com/im/pictures/97a911e0-0891-4964-ae23-0700942cb349.jpg?im_w=480"
+                alt=""
+              />
+              <div class="oe-pic-text">
+                Making home videos with the McFarland family
+              </div>
+            </div>
+            <div class="jump-dance">
+              <img
+                class="dance"
+                src="https://a0.muscache.com/im/pictures/cf921c75-2927-4a15-981b-bf81d01c8ae0.jpg?im_w=480"
+                alt=""
+              />
+              <div class="oe-pic-text">Dance with choreographer Arben Giga</div>
+            </div>
+          </div>
+          <div class="bottom-right-side">
+            <img
+              class="selfie"
+              src="https://a0.muscache.com/im/pictures/ab0dd600-9a99-449f-8224-9667feca9e6c.jpg?im_w=720"
+              alt=""
+            />
+            <div class="oe-pic-text">
+              Take better portraits with photographer Bonnie Rodriguez
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-left">
+        <div style="font-size: 40px">
+          Host a hero: help house frontline responders around the world
+        </div>
+        <button class="hero-button">Get Involved</button>
+      </div>
+      <div class="hero-right">
+        With frontline stays, Airbnb is partnering with our hosts to connect
+        100,000 healthcare providers, relief workers, and first responders with
+        places to stay that allow them to be close to their patients - and
+        safely distanced from their own families.
+      </div>
+    </div>
+    <div class="blm-container">
+      <div class="blm-text">
+        <div style="font-size: 40px">We stand with #BlackLivesMatter</div>
+        <div style="color: white">
+          Now more than ever, it's important that you know how we're fighting
+          discrimination on Airbnb. We'd like to share our newest intiative with
+          you, Project Lighthouse.
+        </div>
+        <button
+          style="
+            border: none;
+            padding: 20px;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+          "
+        >
+          Learn more >
+        </button>
+      </div>
+    </div>
+    <div class="escape-container">
+      <div style="margin: 20px 0px 30px 100px; font-size: 20px">
+        Your next escape
+      </div>
+      <div class="escape-container-1">
+        <div class="escape-card">
+          <img
+            src="https://a0.muscache.com/im/pictures/aec36912-c412-49db-aef4-01bf9d42d2d4.jpg?aki_policy=large"
+            alt=""
+          />
+          <a href="">Myrtle Beach</a>
+        </div>
+        <div class="escape-card">
+          <img
+            src="https://a0.muscache.com/im/pictures/7de95681-3fd2-4e2a-ac2d-3b0328ff7b0f.jpg?aki_policy=large"
+            alt=""
+          />
+          <a href="">Hilton Head Island</a>
+        </div>
+        <div class="escape-card">
+          <img
+            src="https://a0.muscache.com/im/pictures/1a7997b8-f053-410d-a857-bcb182430f9d.jpg?aki_policy=large"
+            alt=""
+          />
+          <a href="">Brevard</a>
+        </div>
+        <div class="escape-card">
+          <img
+            src="https://a0.muscache.com/im/pictures/7f6519cf-ae41-4f53-b5b8-7d5f57272915.jpg?aki_policy=large"
+            alt=""
+          />
+          <a href="">Lake Lure</a>
+        </div>
+      </div>
+      <div class="escape-container-2">
+        <div class="escape-card">
+          <img
+            src="https://a0.muscache.com/im/pictures/93d5208f-80c8-4933-85a5-342b8eab74ac.jpg?aki_policy=large"
+            alt=""
+          />
+          <a href="">Highlands</a>
+        </div>
+        <div class="escape-card">
+          <img
+            src="https://a0.muscache.com/im/pictures/e49b8025-bbf1-4d2f-b641-ace755b0f2cf.jpg?aki_policy=large"
+            alt=""
+          />
+          <a href="">Cullowhee</a>
+        </div>
+        <div class="escape-card">
+          <img
+            src="https://a0.muscache.com/im/pictures/8fd4dc69-9c20-4cc6-9f64-54c002f67ba0.jpg?aki_policy=large"
+            alt=""
+          />
+          <a href="">Hendersonville</a>
+        </div>
+        <div class="escape-card">
+          <img
+            src="https://a0.muscache.com/im/pictures/2124ec5a-e297-45fc-bbdf-3f3451b498fd.jpg?aki_policy=large"
+            alt=""
+          />
+          <a href="">Folly Beach</a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-container">
+      <div class="bottom-column">
+        <div>About</div>
+        <a href="">How Airbnb works</a>
+        <a href="">Diversity & Belonging </a>
+        <a href="">Against Discrimination</a>
+        <a href="">Accessibility</a>
+        <a href="">Trust & Safety</a>
+        <a href="">Airbnb Citizen</a>
+        <a href="">Olympics</a>
+        <a href="">Newsroom</a>
+      </div>
+      <div class="bottom-column">
+        <div>Community</div>
+        <a href="">Airbnb Magazine</a>
+        <a href="">Airbnb Associates</a>
+        <a href="">Airbnb for Work</a>
+        <a href="">Invite friends</a>
+        <a href="">Gift cards</a>
+        <a href="">Careers</a>
+      </div>
+      <div class="bottom-column">
+        <div>Host</div>
+        <a href="">Host your home </a>
+        <a href="">Host an Online Experience</a>
+        <a href="">Message from CEO Brian Chesky</a>
+        <a href="">Responsible hosting</a>
+        <a href="">Open Homes</a>
+        <a href="">Resource Center </a>
+        <a href="">Community Center</a>
+      </div>
+      <div class="bottom-column">
+        <div>Support</div>
+        <a href="">Updates for COVID-19</a>
+        <a href="">Help Center</a>
+        <a href="">Cancellation options</a>
+        <a href="">Neighborhood Support</a>
+      </div>
+    </div>
+    <div class="footer">
+      <div>© 2020 Airbnb, Inc. All rights reserved·Privacy·Terms·Sitemap</div>
+      <div>English (US) $ USD</div>
+    </div>
+    <style>
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        background-color: lightgray;
+        padding: 20px;
+        border-top: 1px solid gray;
+      }
+      .bottom-column a {
+        padding: 10px;
+      }
+      .bottom-column div {
+        padding: 10px;
+      }
+      .bottom-container {
+        display: flex;
+        justify-content: space-evenly;
+        background-color: lightgray;
+        padding: 30px;
+        border-top: 1px solid gray;
+      }
+      .bottom-column {
+        display: flex;
+        flex-direction: column;
+      }
+      .escape-container a {
+        margin: 10px;
+      }
+      .escape-container img {
+        width: 70px;
+        margin: 10px;
+        border-radius: 15px;
+      }
+      .escape-card {
+        display: flex;
+        width: 10vw;
+      }
+      .escape-container-1 {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      .escape-container-2 {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      .blm-text {
+        width: 40vw;
+        margin-top: 80px;
+      }
+      .blm-container {
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        color: white;
+        padding: 40px;
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 15px;
+      }
+
+      .hero-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        width: 100vw;
+      }
+
+      .hero-left {
+        width: 30vw;
+      }
+
+      .hero-right {
+        width: 40vw;
+      }
+
+      .hero-button {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 15px;
+      }
+
+      body {
+        padding: 0px;
+        margin: 0px;
+        font-family: Mulish;
+      }
+      .background-container {
+        background-image: url(https://a0.muscache.com/im/pictures/4bdbc082-4aa4-4fa5-8200-c0931195b95d.jpg?im_w=1680);
+        height: 87vh;
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .covid-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        border: 1px solid black;
+      }
+      .nav-bar {
+        display: flex;
+        justify-content: space-around;
+        width: 100vw;
+        height: 8vh;
+        align-items: center;
+        font-family: Mulish;
+      }
+      .middle-nav {
+        display: flex;
+        justify-content: space-around;
+        width: 50vw;
+      }
+      .search-bar-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .search-bar {
+        width: 700px;
+        height: 25px;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 2%;
+        border-radius: 110px;
+      }
+      .imagination-div {
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+        position: relative;
+        top: 27%;
+        width: 200px;
+      }
+      .imagination-title {
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+      .imagination-description {
+        color: white;
+        margin-bottom: 10px;
+      }
+      .explore-button {
+        text-align: center;
+        width: 80px;
+        border: none;
+        border-radius: 11px;
+        padding: 10px 15px 10px 15px;
+      }
+      .logo-img {
+        width: 140px;
+      }
+      .location-search {
+        display: flex;
+        flex-direction: column;
+      }
+      .card-container {
+        display: flex;
+        justify-content: center;
+      }
+      .card {
+        margin: 30px 10px 50px;
+        border-radius: 20px;
+      }
+      .middle-image {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+      }
+      .card-description {
+        padding: 10px;
+        color: rgb(113, 113, 113);
+        font-weight: thin;
+      }
+      .card-title {
+        padding: 10px;
+        padding-bottom: 0;
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .description-container {
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.459);
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+      }
+      .online-experience-container {
+        background-color: black;
+        width: 100vw;
+      }
+      .oe-title {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      .oe-text {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        width: 500px;
+      }
+      .explore-images {
+        display: flex;
+      }
+      .top-right-side {
+        display: flex;
+      }
+      .muscles,
+      .jump,
+      .dance,
+      .selfie {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+      .oe-pic-text {
+        background-color: gray;
+        color: white;
+        padding: 10px;
+      }
+      .muscles-left,
+      .jump-dance,
+      .bottom-right-side {
+        margin: 20px;
+      }
+      .right-side {
+        height: 100%;
+      }
+      .muscles-left {
+        height: 100%;
+        width: 50%;
+      }
+      .muscles {
+        /* height: 100%; */
+        width: 100%;
+      }
+      .selfie {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </body>
+
+  <script>
+    function search() {
+      localStorage.setItem("city", "Aspen");
+    }
+  </script>
+</html>
