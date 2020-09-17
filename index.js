@@ -7,6 +7,9 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const { response } = require('express');
+const UserModel = require('./models/userModel');
+const ReservationModel = require('./models/reservationModel');
+const ListingModel = require('./models/listingModel');
 
 const app = express();
 app.use(express.json());
@@ -17,49 +20,6 @@ mongoose.connect(
   `mongodb+srv://${un}:${pw}@cluster0.kzid4.mongodb.net/airbnbDb?retryWrites=true&w=majority`,
   { useNewUrlParser: true, useUnifiedTopology: true },
 );
-
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true, unique: true },
-  firstname: { type: String },
-  lastname: { type: String },
-});
-
-const listingSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  state: { type: String, required: true },
-  price: { type: String, required: true },
-  guestAmount: { type: String, required: true },
-  bedAmount: { type: String, required: true },
-  bathAmount: { type: String, required: true },
-  parking: { type: String, required: true },
-  image: { type: String, required: true },
-  city: { type: String, required: true },
-  rating: { type: String, required: true },
-  description: { type: String, required: true },
-  fireExtinguisher: { type: String, required: true },
-});
-
-const reservationSchema = new mongoose.Schema({
-  startDate: { type: String, required: true },
-  endDate: { type: String, required: true },
-  reservedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: true,
-  },
-  reservedListing: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'listing',
-  },
-});
-
-const ListingModel = mongoose.model('listing', listingSchema);
-
-const UserModel = mongoose.model('user', userSchema);
-
-const ReservationModel = mongoose.model('reservation', reservationSchema);
 
 //create a user
 // get all listings
