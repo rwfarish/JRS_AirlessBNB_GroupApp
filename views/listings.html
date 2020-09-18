@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -9,10 +13,17 @@
     <div class="listing-container" id="listing-container"></div>
   </body>
   <style>
+    body {
+      font-family: "Mulish", sans-serif;
+    }
+
     .main-container {
       display: flex;
       width: 100vw;
-      border: 1px solid black;
+      border: 7px solid black;
+      margin: 25px;
+      border-style: double;
+      padding: 5px;
     }
 
     .top-attributes {
@@ -39,12 +50,14 @@
     }
     .guestbb {
       display: flex;
+      font-size: 19px;
     }
     .guestbb div {
       margin: 5px;
     }
     .parking-fe {
       display: flex;
+      font-size: 19px;
     }
     .parking-fe div {
       margin: 5px;
@@ -53,33 +66,43 @@
       display: flex;
       justify-content: space-between;
     }
+
+    .reserve-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: bold;
+    }
   </style>
 
   <script>
     async function getListings() {
-      console.log('onload function called');
-      const city = localStorage.getItem('city');
-      console.log(city);
-      fetch(`http://localhost:4000/listingbycity?city=${city}`)
+      console.log("onload function called");
+      const city = localStorage.getItem("city");
+      const guestAmount = localStorage.getItem("guestAmount");
+      console.log(guestAmount);
+      fetch(
+        `http://localhost:4000/listingbycity?city=${city}&guestAmount=${guestAmount}`
+      )
         .then((res) => res.json())
         .then((listing) => displayListing(listing));
     }
     function displayListing(listing) {
       listing.map((el) => {
-        document.getElementById('listing-container').innerHTML += `
-            <div class="main-container">
+        document.getElementById("listing-container").innerHTML += `
+        <div class="main-container">
           <div class="main-image">
             <img
               src=${el.image}
             />
           </div>
           <div class="fields">
-            <div class="top-attributes">
-              <div class="title">${el.title}</div>
-              <button onclick="createReservation('${el._id}')">Reserve</button>
-              <label>Start Date</label><input id="start-date" type="date"/>
-              <label>End Date</label><input id="end-date" type="date"/>
+            <div class="top-attributes"><div class="title">${el.title}</div>
             </div>
+
             <div class="attributes">
               <div class="guestbb">
                 <div class="guests">Guests: ${el.guestAmount}</div>
@@ -96,15 +119,20 @@
               <div class="pricing">Pricing: $${el.price} / night</div>
             </div>
           </div>
+          <div class="reserve-container">
+              <label>Start Date</label><input id="start-date" type="date"/>
+              <label>End Date</label><input id="end-date" type="date"/>
+              <button onclick="createReservation('${el._id}')">Reserve</button>
+          </div>
         </div>
         `;
       });
     }
     async function createReservation(id) {
-      console.log('reservation called');
-      const startDate = document.getElementById('start-date').value;
-      const endDate = document.getElementById('end-date').value;
-      const reservedBy = localStorage.getItem('jwt');
+      console.log("reservation called");
+      const startDate = document.getElementById("start-date").value;
+      const endDate = document.getElementById("end-date").value;
+      const reservedBy = localStorage.getItem("jwt");
 
       const data = {
         startDate: startDate,
@@ -113,10 +141,10 @@
         reservedListing: id,
       };
       console.log(data);
-      await fetch('http://localhost:4000/reservation', {
-        method: 'POST',
+      await fetch("http://localhost:4000/reservation", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });

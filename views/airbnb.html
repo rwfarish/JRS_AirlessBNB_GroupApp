@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <link
+      href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Mulish"
     />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,7 +60,17 @@
           </div>
           <button>Check in</button>
           <button>Check out</button>
-          <button>Guests</button>
+          <div>
+            <label>Guests</label>
+            <select id="select-guests">
+              <option>all</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5 or more</option>
+            </select>
+          </div>
           <a href="listingspage"><button onclick="search()">Search</button></a>
         </div>
       </div>
@@ -403,7 +413,7 @@
       body {
         padding: 0px;
         margin: 0px;
-        font-family: Mulish;
+        font-family: "Mulish", sans-serif;
       }
       .background-container {
         background-image: url(https://a0.muscache.com/im/pictures/4bdbc082-4aa4-4fa5-8200-c0931195b95d.jpg?im_w=1680);
@@ -603,36 +613,38 @@
 
   <script>
     function search() {
-      const city = document.getElementById('input-city').value;
-      localStorage.setItem('city', city);
+      const city = document.getElementById("input-city").value;
+      const guest = document.getElementById("select-guests").value;
+      localStorage.setItem("city", city);
+      localStorage.setItem("guestAmount", guest);
     }
 
     async function signIn() {
-      const username = document.getElementById('username').value;
-      console.log('sign in called');
-      const password = document.getElementById('password').value;
+      const username = document.getElementById("username").value;
+      console.log("sign in called");
+      const password = document.getElementById("password").value;
       const data = {
         username,
         password,
       };
       try {
-        const resp = await fetch('http://localhost:4000/authenticateuser', {
-          method: 'POST',
+        const resp = await fetch("http://localhost:4000/authenticateuser", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
         const userToken = await resp.json();
 
         if (userToken.jwt) {
-          localStorage.setItem('jwt', userToken.jwt);
-          alert('success');
-          var modal = document.getElementById('myModal');
-          modal.style.display = 'none';
-          document.getElementById('myBtn').innerHTML = username;
+          localStorage.setItem("jwt", userToken.jwt);
+          alert("success");
+          var modal = document.getElementById("myModal");
+          modal.style.display = "none";
+          document.getElementById("myBtn").innerHTML = username;
         } else {
-          alert('FAILURE!!!');
+          alert("FAILURE!!!");
         }
       } catch (error) {
         console.log(error);
@@ -651,25 +663,25 @@
 
     async function signUp() {
       try {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
         const data = { username, password };
-        const resp = await fetch('http://localhost:4000/user', {
-          method: 'POST',
+        const resp = await fetch("http://localhost:4000/user", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
         const newUser = await resp.json();
         console.log(newUser);
         if (newUser.username) {
-          alert('Thanks for Signing Up!');
-          var modal = document.getElementById('myModal');
-          modal.style.display = 'none';
-          document.getElementById('myBtn').innerHTML = username;
+          alert("Thanks for Signing Up!");
+          var modal = document.getElementById("myModal");
+          modal.style.display = "none";
+          document.getElementById("myBtn").innerHTML = username;
         } else {
-          alert('WHO ARE YOU?!');
+          alert("WHO ARE YOU?!");
         }
       } catch (error) {
         console.log(error);
@@ -677,28 +689,28 @@
     }
 
     // Get the modal
-    var modal = document.getElementById('myModal');
+    var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
-    var btn = document.getElementById('myBtn');
+    var btn = document.getElementById("myBtn");
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName('close')[0];
+    var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on the button, open the modal
     btn.onclick = function () {
-      modal.style.display = 'block';
+      modal.style.display = "block";
     };
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
-      modal.style.display = 'none';
+      modal.style.display = "none";
     };
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
       if (event.target == modal) {
-        modal.style.display = 'none';
+        modal.style.display = "none";
       }
     };
   </script>
