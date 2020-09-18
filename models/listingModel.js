@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const listingSchema = new mongoose.Schema({
   title: { type: String, required: true },
   state: { type: String, required: true },
   price: { type: String, required: true },
-  guestAmount: { type: String, required: true },
+  guestAmount: { type: Number, required: true },
   bedAmount: { type: String, required: true },
   bathAmount: { type: String, required: true },
   parking: { type: String, required: true },
@@ -15,6 +15,6 @@ const listingSchema = new mongoose.Schema({
   fireExtinguisher: { type: String, required: true },
 });
 
-const ListingModel = mongoose.model('listing', listingSchema);
+const ListingModel = mongoose.model("listing", listingSchema);
 
 module.exports = ListingModel;
